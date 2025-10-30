@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <title>Sync vs Async Example</title>
+</head>
+<body>
+    <button id="syncButton">Սինխրոն Գործողություն</button>
+    <p id="syncOutput"></p>
+
+    <button id="asyncButton">Ասինխրոն Գործողություն</button>
+    <p id="asyncOutput"></p>
+
+    <script>
+        const syncButton = document.getElementById('syncButton');
+        const asyncButton = document.getElementById('asyncButton');
+        const syncOutput = document.getElementById('syncOutput');
+        const asyncOutput = document.getElementById('asyncOutput');
+
+        syncButton.addEventListener('click', () => {
+            syncOutput.textContent = 'Սինխրոն. Սկսվում է... (Էջը սառած է)';
+            const startTime = Date.now();
+            while (Date.now() - startTime < 3000) {}
+            syncOutput.textContent = 'Սինխրոն. Ավարտվեց։';
+            console.log('Սինխրոն առաջադրանքն ավարտվեց։');
+        });
+
+        asyncButton.addEventListener('click', () => {
+            asyncOutput.textContent = 'Ասինխրոն. Սկսվում է... (Էջը չի սառել)';
+            setTimeout(() => {
+                asyncOutput.textContent = 'Ասինխրոն. Ավարտվեց։';
+                console.log('Ասինխրոն առաջադրանքն ավարտվեց։');
+            }, 3000);
+            console.log('Ասինխրոն կանչը կատարված է, սպասում ենք արդյունքին...');
+        });
+    </script>
+</body>
+</html>
